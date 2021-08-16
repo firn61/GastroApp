@@ -1,7 +1,6 @@
 package ru.med.gastroapp.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "patient")
@@ -21,10 +20,8 @@ public class Patient {
     private String dateOfBirth;
     @Column(name = "oms_num")
     private String omsNum;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-    private List<Disease> diseases;
 
-    public Patient(long id, String name, String midName, String surname, String gender, String dateOfBirth, String omsNum, List<Disease> diseases) {
+    public Patient(long id, String name, String midName, String surname, String gender, String dateOfBirth, String omsNum) {
         this.id = id;
         this.name = name;
         this.midName = midName;
@@ -32,7 +29,6 @@ public class Patient {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.omsNum = omsNum;
-        this.diseases = diseases;
     }
 
     public Patient() {
@@ -94,14 +90,6 @@ public class Patient {
         this.omsNum = omsNum;
     }
 
-    public List<Disease> getDiseases() {
-        return diseases;
-    }
-
-    public void setDiseases(List<Disease> diseases) {
-        this.diseases = diseases;
-    }
-
     @Override
     public String toString() {
         return "Patient{" +
@@ -112,7 +100,6 @@ public class Patient {
                 ", gender='" + gender + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", omsNum='" + omsNum + '\'' +
-                ", diseases=" + diseases +
                 '}';
     }
 }

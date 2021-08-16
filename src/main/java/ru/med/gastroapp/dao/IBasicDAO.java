@@ -1,12 +1,12 @@
 package ru.med.gastroapp.dao;
 
-import ru.med.gastroapp.entities.Drug;
-
 public interface IBasicDAO<T>{
 
-    void save(T drug);
+    void save(T t);
 
-    void merge(T drug);
+    void merge(T t);
+
+    void delete(T t);
 
     T findById(long id);
 

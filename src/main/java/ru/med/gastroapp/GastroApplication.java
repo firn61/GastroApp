@@ -3,17 +3,14 @@ package ru.med.gastroapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.med.gastroapp.entities.*;
-import ru.med.gastroapp.service.IPatientService;
-
+import ru.med.gastroapp.service.IConclusionService;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class GastroApplication {
 
     @Autowired
-    private IPatientService patientService;
+    private IConclusionService conclusionService;
 
     public void testTask(){
 
@@ -33,7 +30,7 @@ public class GastroApplication {
 
         Cure cure = new Cure();
         cure.setName("Лечение гастрита");
-        cure.setCourse(new ArrayList<Course>());
+        cure.setCourse(new ArrayList<>());
         cure.getCourse().add(course);
         cure.setDiet(diet);
 
@@ -47,14 +44,12 @@ public class GastroApplication {
         patient.setSurname("Nemchinsky");
         patient.setGender("male");
         patient.setOmsNum("666");
-        patient.setDiseases(new ArrayList<>());
-        patient.getDiseases().add(disease);
 
-        patientService.addNewPatient(patient);
-
-        Patient patient1 = patientService.getPatient(1L);
-        patient.getDiseases();
-        System.out.println(patient1);
+        Conclusion conclusion = new Conclusion();
+        conclusion.setPatient(patient);
+        conclusion.setDisease(new ArrayList<>());
+        conclusion.getDisease().add(disease);
+        conclusionService.addNew(conclusion);
 
     }
 

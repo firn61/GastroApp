@@ -8,19 +8,11 @@ import ru.med.gastroapp.entities.Patient;
 
 @Service
 @Transactional
-public class PatientService implements IPatientService{
+public class PatientService extends AbstractService<Patient> implements IPatientService<Patient>{
 
     @Autowired
-    IPatientDAO patientDAO;
-
-    @Override
-    public Patient getPatient(Long id) {
-        return patientDAO.findById(id);
+    public PatientService(IPatientDAO<Patient> patientDAO) {
+        super(patientDAO);
     }
 
-    @Override
-    @Transactional
-    public void addNewPatient(Patient patient) {
-        patientDAO.save(patient);
-    }
 }
